@@ -1,1 +1,14 @@
-<p>home works!</p>
+<mat-card class="main">
+  <label for="folder">
+    Folder to scan
+  </label>
+  <input matInput #folder class="folder-select" type="text" webkitdirectory />
+  <button
+    class="start-button"
+    (click)="openFolder(folder.value)"
+    mat-flat-button
+    color="primary"
+    [disabled]="folder.value.length <= 0">
+    Start
+  </button>
+</mat-card>

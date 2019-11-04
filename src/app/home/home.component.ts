@@ -12,4 +12,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  public openFolder(path: string): void {
+    console.log(path);
+  }
 }

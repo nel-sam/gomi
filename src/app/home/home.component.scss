@@ -1,0 +1,19 @@
+@import './../../styles/variables.scss';
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 2px dashed $light-blue;
+  height: 10rem;
+
+  .folder-select {
+    margin: 1rem;
+    width: 10rem;
+  }
+
+  .start-button {
+    width: 10rem;
+  }
+}

@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { Routes, RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 const routes: Routes = [
   {
@@ -16,6 +19,9 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    MatButtonModule,
+    MatInputModule,
+    MatCardModule,
     RouterModule.forChild(routes),
   ]
 })
