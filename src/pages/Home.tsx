@@ -38,7 +38,7 @@ const HomePage: React.FC = () => {
         <IonCard>
           <IonCardContent>
             <IonInput>
-            <IonIcon slot="start" color="medium" icon={folderOpen} />
+            <IonIcon className="folder-icon" slot="start" color="medium" icon={folderOpen} />
             </IonInput>
             <IonButton color="primary">Start</IonButton>
           </IonCardContent>
