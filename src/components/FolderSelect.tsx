@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FormEvent } from 'react';
 import {
   IonInput,
   IonIcon,
@@ -11,7 +11,8 @@ interface FolderSelectProps {
   folderPath: string;
 }
 
-const FolderSelect: React.FunctionComponent<FolderSelectProps> = ({ folderPath }) => {
+const FolderSelect: React.FunctionComponent<FolderSelectProps> = () => {
+  const [folderPath, setFolderPath] = useState('');
   const [showAlert1, setShowAlert1] = useState(false);
 
   const handleStart = async () => {
@@ -20,15 +21,23 @@ const FolderSelect: React.FunctionComponent<FolderSelectProps> = ({ folderPath }
     }
   };
 
+  const handleChange = async (event: FormEvent<HTMLIonInputElement>) => {
+    const value = event.currentTarget.value
+                  ? event.currentTarget.value.toString()
+                  : '';
+                  
+    setFolderPath(value);
+  };
+
   return <div>
           <IonInput
-            value="folderPath"
+            onInput={handleChange}
             placeholder="Choose a folder to scan">
             <IonIcon
               className="folder-icon"
               slot="start"
               color="medium"
-              icon={folderOpen} />
+              icon={folderOpen}/>
           </IonInput>
           <IonButton
             color="primary"
