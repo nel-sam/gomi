@@ -41,7 +41,7 @@ const HomePage: React.FC = () => {
       <IonContent>
         <IonCard>
           <IonCardContent>
-            <FolderSelect folderPath={''}></FolderSelect>
+            <FolderSelect></FolderSelect>
           </IonCardContent>
         </IonCard>
       </IonContent>

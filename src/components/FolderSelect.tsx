@@ -6,12 +6,11 @@ import {
   IonAlert
 } from '@ionic/react';
 import { folderOpen } from 'ionicons/icons';
+import { Plugins, FilesystemDirectory, FilesystemEncoding, ReaddirResult } from '@capacitor/core';
 
-interface FolderSelectProps {
-  folderPath: string;
-}
+const { Filesystem } = Plugins;
 
-const FolderSelect: React.FunctionComponent<FolderSelectProps> = () => {
+const FolderSelect: React.FC = () => {
   const [folderPath, setFolderPath] = useState('');
   const [showAlert1, setShowAlert1] = useState(false);
 
@@ -19,7 +18,22 @@ const FolderSelect: React.FunctionComponent<FolderSelectProps> = () => {
     if (!folderPath) {
       setShowAlert1(true);
     }
+
+    console.log(getFolderContents(folderPath));
   };
+
+  const getFolderContents = async (path: string) => {
+    const directory = FilesystemDirectory.Data;
+
+    try {
+      return await Filesystem.readdir({
+        path: path,
+        directory: directory
+      });
+    } catch(e) {
+      console.error(`Unable to read dir ${directory}/${path}`, e);
+    }
+  }
 
   const handleChange = async (event: FormEvent<HTMLIonInputElement>) => {
     const value = event.currentTarget.value
