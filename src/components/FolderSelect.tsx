@@ -25,7 +25,7 @@ const FolderSelect: React.FunctionComponent<FolderSelectProps> = () => {
     const value = event.currentTarget.value
                   ? event.currentTarget.value.toString()
                   : '';
-                  
+
     setFolderPath(value);
   };
 
@@ -47,7 +47,7 @@ const FolderSelect: React.FunctionComponent<FolderSelectProps> = () => {
           <IonAlert
             isOpen={showAlert1}
             onDidDismiss={() => setShowAlert1(false)}
-            header={'Oh oh'}
+            header={'Error'}
             subHeader={'No folder selected'}
             message={'You must enter a folder to scan'}
             buttons={['OK']}

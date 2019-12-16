@@ -22,7 +22,7 @@ import {
 } from '@ionic/react';
 import { book, build, colorFill, grid, folderOpen } from 'ionicons/icons';
 import React, { useState } from 'react';
-import './Home.css';
+import './Home.scss';
 import FolderSelect from '../components/FolderSelect';
 
 const HomePage: React.FC = () => {
