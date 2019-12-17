@@ -1,7 +1,0 @@
-{
-  "name": "gomi",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react"
-}
