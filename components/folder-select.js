@@ -1,20 +1,29 @@
+const fs = require('fs');
+
 Vue.component('FolderSelect', {
-  template:
-    `<div class="box red">
-      <button v-on:click=\"toggleMe()\">Toggle Now</button>
-      <br>
-      <button v-on:click=\"clicks++\">Clickety Click</button>
-      <br>
-      {{ clicks }}
+  template:`
+    <div>
+      <input v-model="folderPath"></input>
+      <div>
+        <button v-on:click="start()">Start</button>
+      </div>
+      <ul>
+        <li v-for="item in results">
+        {{ item }}
+        </li>
+      </ul>
     </div>`,
   data: function() {
     return {
-      clicks: 0
+      folderPath: '',
+      results: []
     }
   },
   methods: {
-    toggleMe() {
-      this.$root.toggleBox()
+    start() {
+      fs.readdir(this.folderPath, (err, data) => {
+        this.results = data;
+      });
     }
   }
 })
