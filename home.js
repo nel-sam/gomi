@@ -4,7 +4,7 @@ require('./components/folder-select');
 require('./components/results-display');
 
 Vue.component('Home', {
-  template:`
+  template: `
     <div>
       <folder-select
         @folder-path="analyzeFolder">
@@ -16,48 +16,49 @@ Vue.component('Home', {
       </results-display>
     </div>
     `,
-    data: function() {
-      return {
-        results: [],
-        showSpinner: false
-      }
-    },
-    methods: {
-      analyzeFolder(path) {
-       this.showSpinner = true;
+  data: function () {
+    return {
+      results: [],
+      showSpinner: false
+    }
+  },
+  methods: {
+    analyzeFolder(path) {
+      this.showSpinner = true;
+      this.results = [];
 
-        fs.readdir(path, (err, data) => {
-          if (err) {
-            alert(err);
-            return;
+      fs.readdir(path, (err, data) => {
+        if (err) {
+          alert(err);
+          return;
+        }
+
+        let hashes = [];
+
+        for (let path of data) {
+          if (!fs.lstatSync(path).isFile()) {
+            continue;
           }
 
-          let hashes = [];
+          const content = fs.readFileSync(path);
+          const hash = crypto
+            .createHash('md5')
+            .update(content)
+            .digest('hex');
 
-          for (let path of data) {
-            if (!fs.lstatSync(path).isFile()) {
-              continue;
-            }
+          const duplicate = hashes.filter(item => item.hash === hash)[0];
 
-            const content = fs.readFileSync(path);
-            const hash = crypto
-                          .createHash('md5')
-                          .update(content)
-                          .digest('hex');
-
-            const duplicate = hashes.filter(item => item.hash === hash)[0];
-
-            if (duplicate) {
-                this.results.push(`${path}, ${duplicate.path}`);
-            }
-
-            hashes.push({path, hash});
+          if (duplicate) {
+            this.results.push(`${path}, ${duplicate.path}`);
           }
 
-          this.showSpinner = false;
-        });
-      }
+          hashes.push({ path, hash });
+        }
+
+        this.showSpinner = false;
+      });
     }
   }
+}
 );
 
