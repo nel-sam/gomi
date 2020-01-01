@@ -11,6 +11,7 @@ Vue.component('Home', {
       </folder-select>
       <div v-if="showSpinner">Processing...</div>
       <results-display
+        class="results-display"
         v-if="results.length > 0"
         v-bind:items="results">
       </results-display>
@@ -49,7 +50,7 @@ Vue.component('Home', {
           const duplicate = hashes.filter(item => item.hash === hash)[0];
 
           if (duplicate) {
-            this.results.push(`${path}, ${duplicate.path}`);
+            this.results.push(`${path} = ${duplicate.path}`);
           }
 
           hashes.push({ path, hash });

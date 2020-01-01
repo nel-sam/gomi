@@ -1,0 +1,35 @@
+.folder-select {
+  width: 20rem;
+  padding: 1rem;
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+}
+
+.folder-select .title {
+  font-size: 1.2rem;
+}
+
+.folder-select .folder-input {
+  height: 1.25rem;
+  border-radius: 4px;
+}
+
+.folder-select .start-button {
+  background-color: lightskyblue;
+  margin-top: 0.5rem;
+  width: 8rem;
+  height: 1.75rem;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.results-display {
+  border: 1px dashed lightgray;
+  padding: 1rem;
+}
+
+li {
+  list-style-type: none;
+}
